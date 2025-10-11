@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FileText,
   Download,
@@ -13,6 +13,7 @@ import {
   Code,
   Target,
   TrendingUp,
+  ChevronDown,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -37,6 +38,15 @@ interface Experience {
 export default function ExperiencePage() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [filterType, setFilterType] = useState<string>("all");
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+
+  useEffect(() => {
+    experiences.forEach((exp, idx) => {
+      setTimeout(() => {
+        setVisibleCards((prev) => [...prev, exp.id]);
+      }, idx * 50);
+    });
+  }, []);
 
   const experiences: Experience[] = [
     {
@@ -207,20 +217,34 @@ export default function ExperiencePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+      </div>
+
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-8">
+      <section className="pt-32 pb-16 px-4 sm:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+          <div className="flex items-center gap-3 mb-6 animate-fade-in-down">
+            <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"></div>
             <span className="text-blue-400 font-semibold">My Journey</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+
+          <h1
+            className="text-5xl md:text-6xl font-bold text-white mb-4 animate-fade-in-down bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+            style={{ animationDelay: "0.1s" }}
+          >
             Professional Experience
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl leading-relaxed">
+
+          <p
+            className="text-xl text-gray-300 max-w-2xl leading-relaxed animate-fade-in-down"
+            style={{ animationDelay: "0.2s" }}
+          >
             A comprehensive overview of my career journey, from internships to
             senior roles, showcasing my growth, achievements, and contributions
             to impactful projects.
@@ -229,7 +253,7 @@ export default function ExperiencePage() {
       </section>
 
       {/* Filter Section */}
-      <section className="px-4 sm:px-8 pb-12">
+      <section className="px-4 sm:px-8 pb-12 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-3">
             {[
@@ -237,15 +261,16 @@ export default function ExperiencePage() {
               { label: "Work", value: "work" },
               { label: "Internships", value: "internship" },
               { label: "Projects", value: "project" },
-            ].map((filter) => (
+            ].map((filter, idx) => (
               <button
                 key={filter.value}
                 onClick={() => setFilterType(filter.value)}
-                className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                className={`px-6 py-2 rounded-full font-medium transition-all duration-300 animate-fade-in ${
                   filterType === filter.value
-                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/50"
-                    : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-700"
+                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/50 transform scale-105"
+                    : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-700 hover:border-blue-500/50"
                 }`}
+                style={{ animationDelay: `${0.3 + idx * 0.1}s` }}
               >
                 {filter.label}
               </button>
@@ -255,20 +280,28 @@ export default function ExperiencePage() {
       </section>
 
       {/* Experience Timeline */}
-      <section className="px-4 sm:px-8 pb-20">
+      <section className="px-4 sm:px-8 pb-20 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-transparent md:translate-x-px"></div>
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-transparent md:translate-x-px animate-pulse"></div>
 
             {/* Experience Cards */}
             <div className="space-y-8">
               {filteredExperiences.map((exp, idx) => (
-                <div key={exp.id} className="relative">
+                <div
+                  key={exp.id}
+                  className={`relative animate-slide-in-left ${
+                    visibleCards.includes(exp.id) ? "opacity-100" : "opacity-0"
+                  }`}
+                  style={{
+                    animationDelay: `${idx * 0.1}s`,
+                  }}
+                >
                   {/* Timeline Dot */}
-                  <div className="absolute left-0 top-0 md:left-1/2 md:translate-x--1/2 z-10">
+                  <div className="absolute left-0 top-0 md:left-1/2 md:translate-x--1/2 z-20">
                     <div className="flex items-center justify-center">
-                      <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center ring-4 ring-slate-900">
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center ring-4 ring-slate-900 animate-pulse group hover:scale-125 transition-transform">
                         {getTypeIcon(exp.type)}
                       </div>
                     </div>
@@ -286,8 +319,14 @@ export default function ExperiencePage() {
                       onClick={() =>
                         setExpandedId(expandedId === exp.id ? null : exp.id)
                       }
-                      className="group bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-md border border-slate-700 hover:border-blue-500/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer"
+                      className="group bg-gradient-to-br from-slate-800/60 via-slate-800/40 to-slate-900/60 backdrop-blur-xl border border-slate-700 hover:border-blue-500/60 rounded-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/30 cursor-pointer transform hover:-translate-y-2 animate-card-pop"
+                      style={{
+                        animationDelay: `${idx * 0.1 + 0.05}s`,
+                      }}
                     >
+                      {/* Animated background glow on hover */}
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-purple-600/10 group-hover:via-purple-600/5 group-hover:to-pink-600/10 transition-all duration-500 pointer-events-none"></div>
+
                       {/* Image Section */}
                       {exp.image && (
                         <div className="relative h-48 overflow-hidden bg-slate-900">
@@ -301,19 +340,19 @@ export default function ExperiencePage() {
                       )}
 
                       {/* Content Section */}
-                      <div className="p-6">
+                      <div className="p-6 relative z-10">
                         {/* Header */}
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex-1">
-                            <h3 className="text-2xl font-bold text-white mb-2">
+                            <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">
                               {exp.title}
                             </h3>
                             <div className="flex flex-wrap items-center gap-3 text-gray-400 text-sm mb-3">
-                              <span className="flex items-center gap-1">
+                              <span className="flex items-center gap-1 group-hover:text-gray-300 transition-colors">
                                 <Briefcase className="h-4 w-4" />
                                 {exp.company}
                               </span>
-                              <span className="flex items-center gap-1">
+                              <span className="flex items-center gap-1 group-hover:text-gray-300 transition-colors">
                                 <MapPin className="h-4 w-4" />
                                 {exp.location}
                               </span>
@@ -322,7 +361,7 @@ export default function ExperiencePage() {
                           <span
                             className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 border ${getTypeColor(
                               exp.type
-                            )}`}
+                            )} group-hover:shadow-lg transition-all`}
                           >
                             {getTypeIcon(exp.type)}
                             {exp.type.charAt(0).toUpperCase() +
@@ -331,18 +370,18 @@ export default function ExperiencePage() {
                         </div>
 
                         {/* Duration */}
-                        <div className="flex items-center gap-2 text-sm text-gray-400 mb-4 pb-4 border-b border-slate-700/50">
+                        <div className="flex items-center gap-2 text-sm text-gray-400 mb-4 pb-4 border-b border-slate-700/50 group-hover:text-gray-300 transition-colors">
                           <Calendar className="h-4 w-4" />
                           <span>
                             {exp.startDate} - {exp.endDate}
                           </span>
-                          <span className="text-blue-400 font-medium">
+                          <span className="text-blue-400 font-medium group-hover:text-blue-300 transition-colors">
                             ({exp.duration})
                           </span>
                         </div>
 
                         {/* Description */}
-                        <p className="text-gray-300 mb-4 leading-relaxed">
+                        <p className="text-gray-300 mb-4 leading-relaxed group-hover:text-gray-200 transition-colors">
                           {exp.description}
                         </p>
 
@@ -350,18 +389,27 @@ export default function ExperiencePage() {
                         {expandedId === exp.id && (
                           <div className="space-y-4 pt-4 border-t border-slate-700/50 animate-in fade-in duration-300">
                             {/* Highlights */}
-                            <div>
+                            <div
+                              className="animate-slide-in-left"
+                              style={{ animationDelay: "0.1s" }}
+                            >
                               <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                                <TrendingUp className="h-4 w-4 text-blue-400" />
+                                <TrendingUp className="h-4 w-4 text-blue-400 animate-bounce" />
                                 Key Achievements
                               </h4>
                               <ul className="space-y-2">
                                 {exp.highlights.map((highlight, idx) => (
                                   <li
                                     key={idx}
-                                    className="flex items-start gap-3 text-gray-300"
+                                    className="flex items-start gap-3 text-gray-300 hover:text-white transition-colors group/item"
+                                    style={{
+                                      animation: `fade-in-left 0.5s ease-out ${
+                                        0.1 + idx * 0.1
+                                      }s forwards`,
+                                      opacity: 0,
+                                    }}
                                   >
-                                    <ArrowRight className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                                    <ArrowRight className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0 group-hover/item:translate-x-1 transition-transform" />
                                     <span>{highlight}</span>
                                   </li>
                                 ))}
@@ -369,16 +417,25 @@ export default function ExperiencePage() {
                             </div>
 
                             {/* Skills */}
-                            <div>
+                            <div
+                              className="animate-slide-in-left"
+                              style={{ animationDelay: "0.2s" }}
+                            >
                               <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                                <Code className="h-4 w-4 text-purple-400" />
+                                <Code className="h-4 w-4 text-purple-400 animate-pulse" />
                                 Skills & Technologies
                               </h4>
                               <div className="flex flex-wrap gap-2">
                                 {exp.skills.map((skill, idx) => (
                                   <span
                                     key={idx}
-                                    className="px-3 py-1 bg-slate-700/50 border border-slate-600 rounded-full text-sm text-gray-300 hover:border-blue-400/50 transition-colors"
+                                    className="px-3 py-1 bg-gradient-to-r from-slate-700/50 to-slate-600/50 border border-slate-600 rounded-full text-sm text-gray-300 hover:border-blue-400/50 hover:bg-gradient-to-r hover:from-slate-600/60 hover:to-slate-500/60 transition-all transform hover:scale-105"
+                                    style={{
+                                      animation: `fade-in 0.5s ease-out ${
+                                        0.2 + idx * 0.05
+                                      }s forwards`,
+                                      opacity: 0,
+                                    }}
                                   >
                                     {skill}
                                   </span>
@@ -389,13 +446,13 @@ export default function ExperiencePage() {
                         )}
 
                         {/* Expand Button */}
-                        <button className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/50 rounded-lg text-blue-300 font-medium transition-all duration-300 group">
+                        <button className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/50 rounded-lg text-blue-300 font-medium transition-all duration-300 group/btn hover:shadow-lg hover:shadow-blue-500/20 transform hover:scale-105 active:scale-95">
                           <span>
                             {expandedId === exp.id ? "Show Less" : "Show More"}
                           </span>
-                          <ArrowRight
-                            className={`h-4 w-4 transition-transform ${
-                              expandedId === exp.id ? "rotate-90" : ""
+                          <ChevronDown
+                            className={`h-4 w-4 transition-transform group-hover/btn:scale-125 ${
+                              expandedId === exp.id ? "rotate-180" : ""
                             }`}
                           />
                         </button>
@@ -410,7 +467,7 @@ export default function ExperiencePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="px-4 sm:px-8 py-20 bg-slate-900/50">
+      <section className="px-4 sm:px-8 py-20 bg-slate-900/50 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -420,17 +477,125 @@ export default function ExperiencePage() {
             ].map((stat, idx) => (
               <div
                 key={idx}
-                className="text-center p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700 rounded-xl hover:border-blue-500/50 transition-colors"
+                className="text-center p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700 rounded-xl hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-1 animate-fade-in"
+                style={{ animationDelay: `${idx * 0.1}s` }}
               >
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2 animate-text-shimmer">
                   {stat.value}
                 </div>
-                <div className="text-gray-400">{stat.label}</div>
+                <div className="text-gray-400 group-hover:text-gray-300 transition-colors">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <style>{`
+        @keyframes fade-in-down {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fade-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slide-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes card-pop {
+          0% {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        @keyframes text-shimmer {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+
+        .animate-fade-in-down {
+          animation: fade-in-down 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-slide-in-left {
+          animation: slide-in-left 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-card-pop {
+          animation: card-pop 0.5s ease-out forwards;
+        }
+
+        .animate-text-shimmer {
+          background-size: 200% 200%;
+          animation: text-shimmer 3s ease-in-out infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .group:hover .animate-bounce {
+          animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      `}</style>
     </div>
   );
 }

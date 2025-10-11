@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Download,
   ExternalLink,
@@ -11,6 +11,7 @@ import {
   Quote,
   Share2,
   FileText,
+  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -40,6 +41,15 @@ interface ResearchPaper {
 export default function ResearchPaperPage() {
   const [selectedSection, setSelectedSection] = useState<string>("abstract");
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [visibleAuthors, setVisibleAuthors] = useState<number[]>([]);
+
+  useEffect(() => {
+    researchPaper.authors.forEach((_, idx) => {
+      setTimeout(() => {
+        setVisibleAuthors((prev) => [...prev, idx]);
+      }, idx * 50);
+    });
+  }, []);
 
   const researchPaper: ResearchPaper = {
     id: 1,
@@ -106,7 +116,7 @@ export default function ResearchPaperPage() {
       case "methodology":
         return researchPaper.methodology;
       case "findings":
-        return null; // Special case for findings
+        return null;
       case "conclusion":
         return researchPaper.conclusion;
       default:
@@ -115,19 +125,29 @@ export default function ResearchPaperPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+      </div>
+
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-8">
+      <section className="pt-32 pb-16 px-4 sm:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500"></div>
+          <div className="flex items-center gap-3 mb-6 animate-fade-in-down">
+            <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"></div>
             <span className="text-blue-400 font-semibold">
               Research Publication
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+
+          <h1
+            className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight animate-fade-in-down bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+            style={{ animationDelay: "0.1s" }}
+          >
             {researchPaper.title}
           </h1>
 
@@ -137,62 +157,73 @@ export default function ResearchPaperPage() {
               {researchPaper.authors.map((author, idx) => (
                 <span
                   key={idx}
-                  className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-sm text-gray-300 hover:border-blue-400/50 transition-colors"
+                  className={`px-3 py-1 bg-gradient-to-r from-slate-800/60 to-slate-900/60 border border-slate-700 hover:border-blue-400/50 rounded-full text-sm text-gray-300 hover:text-blue-300 transition-all duration-300 transform hover:scale-105 animate-fade-in ${
+                    visibleAuthors.includes(idx) ? "opacity-100" : "opacity-0"
+                  }`}
+                  style={{ animationDelay: `${0.2 + idx * 0.1}s` }}
                 >
                   {author}
                 </span>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-6 text-gray-400 text-sm">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-blue-400" />
+            <div
+              className="flex flex-wrap gap-6 text-gray-400 text-sm animate-fade-in"
+              style={{ animationDelay: "0.5s" }}
+            >
+              <div className="flex items-center gap-2 group hover:text-gray-300 transition-colors">
+                <Calendar className="h-4 w-4 text-blue-400 group-hover:rotate-12 transition-transform" />
                 {researchPaper.date}
               </div>
-              <div className="flex items-center gap-2">
-                <BookOpen className="h-4 w-4 text-purple-400" />
+              <div className="flex items-center gap-2 group hover:text-gray-300 transition-colors">
+                <BookOpen className="h-4 w-4 text-purple-400 group-hover:rotate-12 transition-transform" />
                 {researchPaper.publishedIn}
               </div>
               {researchPaper.volume && (
-                <div className="flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-emerald-400" />
+                <div className="flex items-center gap-2 group hover:text-gray-300 transition-colors">
+                  <FileText className="h-4 w-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
                   {researchPaper.volume}
                 </div>
               )}
               {researchPaper.pages && (
-                <div className="text-gray-400">{researchPaper.pages}</div>
+                <div className="text-gray-400 group hover:text-gray-300 transition-colors">
+                  {researchPaper.pages}
+                </div>
               )}
-              <div className="flex items-center gap-2">
-                <Award className="h-4 w-4 text-yellow-400" />
+              <div className="flex items-center gap-2 group hover:text-gray-300 transition-colors">
+                <Award className="h-4 w-4 text-yellow-400 group-hover:scale-125 transition-transform" />
                 {researchPaper.citations} Citations
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <div
+            className="flex flex-wrap gap-4 animate-fade-in"
+            style={{ animationDelay: "0.6s" }}
+          >
             <a
               href={researchPaper.pdfUrl}
               download
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transform hover:scale-105 active:scale-95 group"
             >
-              <Download className="h-5 w-5" />
+              <Download className="h-5 w-5 group-hover:scale-125 transition-transform" />
               Download PDF
             </a>
             <button
               onClick={() => setIsPreviewOpen(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-purple-500/50 text-white font-semibold rounded-lg transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border border-slate-700 hover:border-purple-500/50 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 group"
             >
-              <ExternalLink className="h-5 w-5" />
+              <ExternalLink className="h-5 w-5 group-hover:scale-125 transition-transform" />
               View Paper
             </button>
             <a
               href={researchPaper.externalLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500/50 text-white font-semibold rounded-lg transition-all duration-300"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border border-slate-700 hover:border-emerald-500/50 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 group"
             >
-              <Share2 className="h-5 w-5" />
+              <Share2 className="h-5 w-5 group-hover:rotate-12 transition-transform" />
               External Link
             </a>
           </div>
@@ -200,36 +231,40 @@ export default function ResearchPaperPage() {
       </section>
 
       {/* Paper Image */}
-      <section className="px-4 sm:px-8 pb-16">
+      <section className="px-4 sm:px-8 pb-16 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="relative h-96 rounded-xl overflow-hidden border border-slate-700 group">
+          <div
+            className="relative h-96 rounded-xl overflow-hidden border border-slate-700 group animate-fade-in"
+            style={{ animationDelay: "0.7s" }}
+          >
             <img
               src={researchPaper.image}
               alt={researchPaper.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent group-hover:from-slate-900/80 transition-colors duration-300"></div>
           </div>
         </div>
       </section>
 
       {/* Navigation Tabs */}
-      <section className="px-4 sm:px-8 pb-8">
+      <section className="px-4 sm:px-8 pb-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap gap-2 border-b border-slate-700 pb-4">
-            {sections.map((section) => {
+            {sections.map((section, idx) => {
               const Icon = section.icon;
               return (
                 <button
                   key={section.id}
                   onClick={() => setSelectedSection(section.id)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 animate-fade-in transform hover:scale-105 active:scale-95 ${
                     selectedSection === section.id
                       ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/50"
-                      : "text-gray-400 hover:text-white hover:bg-slate-800/50"
+                      : "text-gray-400 hover:text-white hover:bg-slate-800/50 border border-slate-700 hover:border-blue-500/50"
                   }`}
+                  style={{ animationDelay: `${0.8 + idx * 0.1}s` }}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-4 w-4 group-hover:rotate-12 transition-transform" />
                   <span className="hidden sm:inline">{section.label}</span>
                 </button>
               );
@@ -239,24 +274,28 @@ export default function ResearchPaperPage() {
       </section>
 
       {/* Content Section */}
-      <section className="px-4 sm:px-8 pb-20">
+      <section className="px-4 sm:px-8 pb-20 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700 rounded-xl p-8 backdrop-blur-md">
+          <div
+            className="bg-gradient-to-br from-slate-800/60 via-slate-800/40 to-slate-900/60 border border-slate-700 rounded-xl p-8 backdrop-blur-xl animate-fade-in hover:border-blue-500/50 transition-colors duration-300"
+            style={{ animationDelay: "1.1s" }}
+          >
             {selectedSection === "findings" ? (
-              <div className="space-y-4">
-                <h2 className="text-3xl font-bold text-white mb-6">
+              <div className="space-y-4 animate-fade-in">
+                <h2 className="text-3xl font-bold text-white mb-6 animate-slide-in-left">
                   Key Findings
                 </h2>
                 <div className="space-y-4">
                   {researchPaper.keyFindings.map((finding, idx) => (
                     <div
                       key={idx}
-                      className="flex gap-4 p-4 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-colors group"
+                      className="flex gap-4 p-4 bg-gradient-to-r from-slate-800/50 to-slate-700/30 border border-slate-700 rounded-lg hover:border-blue-500/50 hover:from-slate-800/70 hover:to-slate-700/50 transition-all duration-300 group transform hover:translate-x-2 animate-card-pop"
+                      style={{ animationDelay: `${1.2 + idx * 0.1}s` }}
                     >
-                      <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-shadow">
+                      <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold group-hover:shadow-lg group-hover:shadow-blue-500/50 transition-shadow group-hover:scale-125 transform">
                         {idx + 1}
                       </div>
-                      <p className="text-gray-300 leading-relaxed flex-1 pt-1">
+                      <p className="text-gray-300 leading-relaxed flex-1 pt-1 group-hover:text-gray-100 transition-colors">
                         {finding}
                       </p>
                     </div>
@@ -264,11 +303,11 @@ export default function ResearchPaperPage() {
                 </div>
               </div>
             ) : (
-              <div>
-                <h2 className="text-3xl font-bold text-white mb-6">
+              <div className="animate-fade-in">
+                <h2 className="text-3xl font-bold text-white mb-6 animate-slide-in-left">
                   {sections.find((s) => s.id === selectedSection)?.label}
                 </h2>
-                <p className="text-gray-300 leading-relaxed text-lg whitespace-pre-line">
+                <p className="text-gray-300 leading-relaxed text-lg whitespace-pre-line group-hover:text-gray-200 transition-colors">
                   {getSectionContent()}
                 </p>
               </div>
@@ -278,14 +317,20 @@ export default function ResearchPaperPage() {
       </section>
 
       {/* Keywords Section */}
-      <section className="px-4 sm:px-8 pb-20">
+      <section className="px-4 sm:px-8 pb-20 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-6">Keywords</h2>
+          <h2
+            className="text-2xl font-bold text-white mb-6 animate-fade-in"
+            style={{ animationDelay: "1.3s" }}
+          >
+            Keywords
+          </h2>
           <div className="flex flex-wrap gap-3">
             {researchPaper.keywords.map((keyword, idx) => (
               <span
                 key={idx}
-                className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/50 rounded-full text-blue-300 font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all cursor-pointer"
+                className="px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/50 rounded-full text-blue-300 font-medium hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 cursor-pointer transform hover:scale-110 hover:from-blue-500/30 hover:to-purple-500/30 animate-fade-in"
+                style={{ animationDelay: `${1.4 + idx * 0.05}s` }}
               >
                 {keyword}
               </span>
@@ -296,23 +341,42 @@ export default function ResearchPaperPage() {
 
       {/* Paper Preview Modal */}
       {isPreviewOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col border border-slate-700">
+        <div
+          className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setIsPreviewOpen(false)}
+        >
+          <div
+            className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col border border-slate-600 overflow-hidden animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-700">
-              <h3 className="text-2xl font-bold text-white">Paper Preview</h3>
+            <div className="flex items-center justify-between p-6 border-b border-slate-700 bg-gradient-to-r from-slate-900/50 to-slate-800/50">
+              <div className="flex-1">
+                <h2 className="text-3xl font-bold text-white mb-1 animate-fade-in">
+                  {researchPaper.title}
+                </h2>
+                <p
+                  className="text-sm text-blue-300 font-medium animate-fade-in"
+                  style={{ animationDelay: "0.1s" }}
+                >
+                  Issued by {researchPaper.publishedIn}
+                </p>
+              </div>
               <button
                 onClick={() => setIsPreviewOpen(false)}
-                className="text-gray-400 hover:text-white transition-colors text-2xl"
+                className="text-gray-400 hover:text-white transition-all duration-300 hover:bg-slate-700 p-2 rounded-lg group"
               >
-                ✕
+                <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
               </button>
             </div>
 
             {/* Modal Content */}
-            <div className="flex-1 overflow-y-auto p-6">
-              <div className="space-y-4">
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900">
+              <div
+                className="p-8 space-y-4 animate-fade-in"
+                style={{ animationDelay: "0.2s" }}
+              >
+                <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700 rounded-lg p-6 hover:border-blue-500/50 transition-colors">
                   <h3 className="text-xl font-bold text-white mb-3">
                     {researchPaper.title}
                   </h3>
@@ -323,7 +387,7 @@ export default function ResearchPaperPage() {
                     {researchPaper.keywords.slice(0, 5).map((keyword, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-1 text-xs bg-slate-700 text-gray-300 rounded"
+                        className="px-2 py-1 text-xs bg-blue-500/20 border border-blue-500/50 text-blue-300 rounded hover:bg-blue-500/30 transition-colors"
                       >
                         {keyword}
                       </span>
@@ -331,29 +395,34 @@ export default function ResearchPaperPage() {
                   </div>
                 </div>
 
-                <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700 rounded-lg p-6 hover:border-purple-500/50 transition-colors">
                   <h4 className="text-lg font-bold text-white mb-3">
                     Publication Details
                   </h4>
                   <div className="space-y-2 text-gray-300">
                     <p>
-                      <strong>Journal:</strong> {researchPaper.publishedIn}
+                      <strong className="text-white">Journal:</strong>{" "}
+                      {researchPaper.publishedIn}
                     </p>
                     <p>
-                      <strong>Date:</strong> {researchPaper.date}
+                      <strong className="text-white">Date:</strong>{" "}
+                      {researchPaper.date}
                     </p>
                     {researchPaper.volume && (
                       <p>
-                        <strong>Volume:</strong> {researchPaper.volume}
+                        <strong className="text-white">Volume:</strong>{" "}
+                        {researchPaper.volume}
                       </p>
                     )}
                     {researchPaper.pages && (
                       <p>
-                        <strong>Pages:</strong> {researchPaper.pages}
+                        <strong className="text-white">Pages:</strong>{" "}
+                        {researchPaper.pages}
                       </p>
                     )}
                     <p>
-                      <strong>Citations:</strong> {researchPaper.citations}
+                      <strong className="text-white">Citations:</strong>{" "}
+                      {researchPaper.citations}
                     </p>
                   </div>
                 </div>
@@ -361,28 +430,120 @@ export default function ResearchPaperPage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="border-t border-slate-700 p-6 bg-slate-800/50 flex gap-3">
+            <div className="border-t border-slate-700 p-6 bg-gradient-to-r from-slate-900/50 to-slate-800/50 flex gap-3">
+              <button
+                onClick={() => setIsPreviewOpen(false)}
+                className="flex-1 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors duration-300 transform hover:scale-105 active:scale-95"
+              >
+                Close
+              </button>
               <a
                 href={researchPaper.pdfUrl}
                 download
-                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all"
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 group"
               >
-                <Download className="h-5 w-5" />
-                Download Full PDF
-              </a>
-              <a
-                href={researchPaper.externalLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-all"
-              >
-                <ExternalLink className="h-5 w-5" />
-                View on Publisher Site
+                <Download className="h-4 w-4 group-hover:scale-125 transition-transform" />
+                Download Certificate
               </a>
             </div>
           </div>
         </div>
       )}
+
+      <style>{`
+        @keyframes fade-in-down {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes slide-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes card-pop {
+          0% {
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        @keyframes scale-in {
+          0% {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-fade-in-down {
+          animation: fade-in-down 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-slide-in-left {
+          animation: slide-in-left 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-card-pop {
+          animation: card-pop 0.5s ease-out forwards;
+        }
+
+        .animate-scale-in {
+          animation: scale-in 0.4s ease-out forwards;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        .scrollbar-thumb-slate-700::-webkit-scrollbar-thumb {
+          background-color: rgb(51 65 85);
+          border-radius: 3px;
+        }
+
+        .scrollbar-track-slate-900::-webkit-scrollbar-track {
+          background-color: rgb(15 23 42);
+        }
+      `}</style>
     </div>
   );
 }

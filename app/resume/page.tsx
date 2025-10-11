@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FileText,
   Download,
@@ -14,9 +14,19 @@ import { Eye, Mail, Phone, Linkedin } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 
 export default function ResumePage() {
+  const [scrollY, setScrollY] = useState(0);
+  const [visibleSections, setVisibleSections] = useState<boolean[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const sections = [
     {
       title: "Education",
+      icon: "🎓",
       items: [
         {
           heading: "Standardize tests and advance Placements",
@@ -58,7 +68,8 @@ export default function ResumePage() {
       ],
     },
     {
-      title: "Academic Achievments",
+      title: "Academic Achievements",
+      icon: "🏆",
       items: [
         {
           heading: "",
@@ -83,12 +94,13 @@ export default function ResumePage() {
     },
     {
       title: "Leadership Responsibilities and Roles",
+      icon: "👑",
       items: [
         {
           heading: "President of Expressions Theatre Club DPS RK Puram",
           subheading: "Grade 10-12",
           points: [
-            "Organised Delhi NCR’s largest theatre festival, Theatron 2025 with a footfall of 1500+ theatre enthusiasts and 45+ schools participating in 12 different competitions",
+            "Organised Delhi NCR's largest theatre festival, Theatron 2025 with a footfall of 1500+ theatre enthusiasts and 45+ schools participating in 12 different competitions",
             "Collaborated with sponsors and school partners ensuring their participation.",
             "Performed as one of the leads in front of Principal, Chairman of the DPS Society and other esteemed members twice",
             "Won various inter-school theatre competitions and selected to represent the school at New Zealand High Commission Sustainability Carnival by performing a mime promoting environmental awareness",
@@ -117,7 +129,7 @@ export default function ResumePage() {
             "Set up a game stall at Youth Delhi Interact Leadership Assembly and raised Rs3000+",
             "Organised Cleanliness drive in school to prevent water stagnation",
             "Participated in the Adult Literacy Campaign and took the responsibility to teach illiterate adults",
-            "Set up a game stall at our school’s annual carnival to promote our club ",
+            "Set up a game stall at our school's annual carnival to promote our club ",
             "Spearheaded the Social Service League Inductions 2025-2026",
           ],
         },
@@ -126,26 +138,28 @@ export default function ResumePage() {
           subheading: "Grade 11-12",
           points: [
             "Helped organise various Intra-Section Competitions",
-            "Won 2nd position at Ramjas International School’s Commerce Festival under the idea pitching category",
-            "Volunteered at DPSRKP’s Commerce Festival ",
+            "Won 2nd position at Ramjas International School's Commerce Festival under the idea pitching category",
+            "Volunteered at DPSRKP's Commerce Festival ",
           ],
         },
       ],
     },
     {
       title: "Journalism/Publication",
+      icon: "📝",
       items: [
         {
           heading: "Echoes of a Paper Heart",
           subheading: "Author",
           points: [
-            "a published anthology of original poems capturing emotional conflicts, human connection, and the journey of personal growth. Received a preface for the same by the schools’s principal ",
+            "a published anthology of original poems capturing emotional conflicts, human connection, and the journey of personal growth. Received a preface for the same by the schools's principal ",
           ],
         },
       ],
     },
     {
       title: "Research Paper",
+      icon: "🔬",
       items: [
         {
           heading:
@@ -162,6 +176,7 @@ export default function ResumePage() {
     },
     {
       title: "Internship",
+      icon: "💼",
       items: [
         {
           heading: "TaxCity",
@@ -177,6 +192,7 @@ export default function ResumePage() {
     },
     {
       title: "TIE Young Entrepreneur Challenge",
+      icon: "🚀",
       items: [
         {
           heading: "2022",
@@ -193,6 +209,7 @@ export default function ResumePage() {
     },
     {
       title: "Workshop and Summer Programs",
+      icon: "📚",
       items: [
         {
           heading:
@@ -203,7 +220,7 @@ export default function ResumePage() {
           ],
         },
         {
-          heading: "Won 1st place in UnHackathon’23 [July 2023]",
+          heading: "Won 1st place in UnHackathon'23 [July 2023]",
           subheading: "Rishihood University",
           points: [
             "Awarded cash prize of ₹50,000 for developing an innovative phone screen guard designed to induce sleep after prolonged viewing, reducing screen time and alleviating anxiety.",
@@ -244,18 +261,11 @@ export default function ResumePage() {
             "Won High Commendation Award as Hermione Granger in Harry Potter Committee, combining passion for speaking and love for harry potter",
           ],
         },
-        {
-          heading:
-            "Summer Program in Data ScienceSelected to Participate in High School Achievers Program [June 2023]",
-          subheading: "YLAC",
-          points: [
-            "A a competitive program focused on sensitising students to social issues, fostering diverse perspectives, and developing skills for long-lasting impact. The program provided a platform to explore leadership potential, strengthen problem-solving abilities, and cultivate a deeper sense of purpose in society.",
-          ],
-        },
       ],
     },
     {
       title: "Economic Pursuit",
+      icon: "💰",
       items: [
         {
           heading: "Online courses",
@@ -268,7 +278,8 @@ export default function ResumePage() {
       ],
     },
     {
-      title: "Virtual Internships ",
+      title: "Virtual Internships",
+      icon: "🖥️",
       items: [
         {
           heading: "HSBC Global Banking & Markets Simulation",
@@ -301,7 +312,8 @@ export default function ResumePage() {
       ],
     },
     {
-      title: "Virtual Projects ",
+      title: "Virtual Projects",
+      icon: "⚙️",
       items: [
         {
           heading: "Analysing Macro-Environmental Factors",
@@ -321,6 +333,7 @@ export default function ResumePage() {
     },
     {
       title: "Community Service",
+      icon: "❤️",
       items: [
         {
           heading: "2023, 2025",
@@ -354,6 +367,7 @@ export default function ResumePage() {
     },
     {
       title: "Hobbies",
+      icon: "🎨",
       items: [
         {
           heading: "",
@@ -371,56 +385,79 @@ export default function ResumePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-900 to-slate-900 relative overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+      </div>
+
       <Navigation />
 
-      <div className="container mx-auto px-8 pt-32 pb-16 md:px-16 lg:px-32">
+      <div className="container mx-auto px-8 pt-32 pb-16 md:px-16 lg:px-32 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-8">Resume</h1>
+        <div className="text-center mb-12 animate-fade-in-down">
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-text-shimmer">
+            Resume
+          </h1>
+          <p
+            className="text-gray-300 text-lg mt-2 animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Omisaa Bansal
+          </p>
 
           {/* Contact Information Grid */}
-          <div className="flex justify-center gap-6 mb-8 flex-wrap">
-            <a
-              href="tel:+919312652000"
-              className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
-            >
-              <Phone className="h-5 w-5" />
-              <span className="text-sm">+91 9312652000</span>
-            </a>
-
-            <a
-              href="mailto:omisaabansal2009@gmail.com"
-              className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
-            >
-              <Mail className="h-5 w-5" />
-              <span className="text-sm">omisaabansal@gmail.com</span>
-            </a>
-
-            <a
-              href="https://linkedin.com/in/omisaabansal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-white hover:text-purple-300 transition-colors"
-            >
-              <Linkedin className="h-5 w-5" />
-              <span className="text-sm">LinkedIn</span>
-            </a>
+          <div className="flex justify-center gap-6 mb-8 flex-wrap mt-8">
+            {[
+              {
+                icon: Phone,
+                text: "+91 9312652000",
+                href: "tel:+919312652000",
+              },
+              {
+                icon: Mail,
+                text: "omisaabansal@gmail.com",
+                href: "mailto:omisaabansal@gmail.com",
+              },
+              {
+                icon: Linkedin,
+                text: "LinkedIn",
+                href: "https://linkedin.com/in/omisaabansal",
+              },
+            ].map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <a
+                  key={idx}
+                  href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : "_self"}
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-white hover:text-purple-300 transition-all duration-300 group animate-fade-in px-4 py-2 rounded-lg hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-purple-400/50"
+                  style={{ animationDelay: `${0.1 * (idx + 1)}s` }}
+                >
+                  <Icon className="h-5 w-5 group-hover:scale-125 transition-transform" />
+                  <span className="text-sm">{item.text}</span>
+                </a>
+              );
+            })}
           </div>
 
           {/* Resume Action Buttons */}
           <div className="flex justify-center gap-4 flex-wrap">
             <Button
               variant="secondary"
-              className="bg-white text-black hover:bg-white/90"
+              className="bg-white text-black hover:bg-white/90 group transition-all duration-300 animate-fade-in"
+              style={{ animationDelay: "0.4s" }}
               onClick={() => window.open("/path-to-resume.pdf", "_blank")}
             >
-              <Eye className="h-4 w-4 mr-2" />
+              <Eye className="h-4 w-4 mr-2 group-hover:scale-125 transition-transform" />
               View Resume
             </Button>
             <Button
               variant="secondary"
-              className="bg-purple-600 text-white hover:bg-purple-700"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 group transition-all duration-300 animate-fade-in"
+              style={{ animationDelay: "0.5s" }}
               onClick={() => {
                 const link = document.createElement("a");
                 link.href = "/path-to-resume.pdf";
@@ -428,49 +465,175 @@ export default function ResumePage() {
                 link.click();
               }}
             >
-              <Download className="h-4 w-4 mr-2" />
+              <Download className="h-4 w-4 mr-2 group-hover:scale-125 transition-transform group-hover:-translate-y-1" />
               Download Resume
             </Button>
           </div>
         </div>
 
+        <style>{`
+          @keyframes fade-in-down {
+            from {
+              opacity: 0;
+              transform: translateY(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+
+          @keyframes text-shimmer {
+            0%, 100% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+          }
+
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0px);
+            }
+            50% {
+              transform: translateY(-20px);
+            }
+          }
+
+          @keyframes card-pop {
+            0% {
+              opacity: 0;
+              transform: scale(0.8) translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: scale(1) translateY(0);
+            }
+          }
+
+          .animate-fade-in-down {
+            animation: fade-in-down 0.6s ease-out forwards;
+          }
+
+          .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+          }
+
+          .animate-text-shimmer {
+            background-size: 200% 200%;
+            animation: text-shimmer 3s ease-in-out infinite;
+          }
+
+          .animate-float {
+            animation: float 3s ease-in-out infinite;
+          }
+
+          .animate-card-pop {
+            animation: card-pop 0.5s ease-out forwards;
+          }
+
+          .animation-delay-2000 {
+            animation-delay: 2s;
+          }
+
+          .group:hover .animate-scale {
+            animation: scale 0.3s ease-in-out;
+          }
+
+          @keyframes slide-in-left {
+            from {
+              opacity: 0;
+              transform: translateX(-40px);
+            }
+            to {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+
+          .animate-slide-in-left {
+            animation: slide-in-left 0.6s ease-out forwards;
+          }
+        `}</style>
+
         {/* Sections */}
         {sections.map((section, sectionIndex) => (
-          <div key={sectionIndex} className="mb-16">
-            <h2 className="text-3xl font-bold text-white mb-6 border-b border-purple-500 pb-2">
-              {section.title}
-            </h2>
+          <div
+            key={sectionIndex}
+            className="mb-20 animate-slide-in-left"
+            style={{ animationDelay: `${0.05 * sectionIndex}s` }}
+          >
+            <div className="flex items-center gap-4 mb-8">
+              <span
+                className="text-4xl animate-float"
+                style={{ animationDelay: `${0.1 * sectionIndex}s` }}
+              >
+                {section.icon}
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white">
+                {section.title}
+              </h2>
+              <div className="h-1 flex-1 bg-gradient-to-r from-purple-500 to-transparent rounded-full"></div>
+            </div>
+
             <div className="grid gap-6 md:grid-cols-2">
               {section.items.map((item, itemIndex) => (
                 <div
                   key={itemIndex}
-                  className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 hover:border-purple-400 transition-all hover:transform hover:scale-105"
+                  className="group bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl rounded-2xl p-8 border border-white/20 hover:border-purple-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/30 transform hover:-translate-y-2 animate-card-pop"
+                  style={{
+                    animationDelay: `${0.05 * sectionIndex + 0.1 * itemIndex}s`,
+                  }}
                 >
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {item.heading}
-                  </h3>
-                  <p className="text-purple-300 text-sm mb-4">
-                    {item.subheading}
-                  </p>
-                  <ul className="space-y-2 mb-4">
-                    {item.points.map((point, pointIndex) => (
-                      <li
-                        key={pointIndex}
-                        className="text-gray-300 text-sm flex items-start"
-                      >
-                        <span className="text-purple-400 mr-2">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-purple-400 text-purple-300 hover:bg-purple-500/20"
-                    onClick={() => alert("Certificate link coming soon!")}
-                  >
-                    View Certificate
-                  </Button>
+                  {/* Animated background glow on hover */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600/0 via-purple-600/0 to-pink-600/0 group-hover:from-purple-600/10 group-hover:via-purple-600/5 group-hover:to-pink-600/10 transition-all duration-500 pointer-events-none"></div>
+
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
+                          {item.heading || "Achievement"}
+                        </h3>
+                        <p className="text-purple-300 text-sm mb-4 font-semibold group-hover:text-pink-300 transition-colors">
+                          {item.subheading}
+                        </p>
+                      </div>
+                    </div>
+
+                    <ul className="space-y-3 mb-6">
+                      {item.points.map((point, pointIndex) => (
+                        <li
+                          key={pointIndex}
+                          className="text-gray-300 text-sm flex items-start group/item hover:text-white transition-colors"
+                        >
+                          <span className="text-purple-400 mr-3 text-lg group-hover/item:text-pink-400 transition-colors">
+                            →
+                          </span>
+                          <span className="leading-relaxed">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-purple-400/50 text-purple-300 hover:bg-purple-500/30 hover:border-purple-300 transition-all duration-300 group/btn w-full"
+                      onClick={() => alert("Certificate link coming soon!")}
+                    >
+                      <Award className="h-4 w-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                      View Certificate
+                    </Button>
+                  </div>
                 </div>
               ))}
             </div>
