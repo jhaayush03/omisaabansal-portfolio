@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-"use client";
 import React, { useState, useEffect } from "react";
 import {
   ChevronDown,
@@ -34,14 +32,6 @@ export default function InteractClubPage() {
   }, []);
 
   const initiatives = [
-    /* {
-      icon: <Users className="w-6 h-6" />,
-      title: "Youth Leadership Assembly",
-      description:
-        "Set up a game stall at Youth Delhi Interact Leadership Assembly and raised Rs3000+",
-      color: "from-emerald-500 to-teal-500",
-      amount: "₹3000+",
-    }, */
     {
       icon: <Droplets className="w-6 h-6" />,
       title: "Voluntering",
@@ -61,12 +51,6 @@ export default function InteractClubPage() {
       description: " Volunteered at DPSRKP’s Commerce Fes val",
       color: "from-pink-500 to-rose-500",
     },
-    /* {
-      icon: <Award className="w-6 h-6" />,
-      title: "Leadership",
-      description: "Spearheaded the Social Service League Inductions 2025-2026",
-      color: "from-purple-500 to-indigo-500",
-    },*/
   ];
 
   const certificates = [
