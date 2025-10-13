@@ -1,5 +1,5 @@
 "use client";
-"use client";
+
 import React, { useState, useEffect } from "react";
 import { ChevronDown, Award, Users, Trophy, Sparkles } from "lucide-react";
 
@@ -7,18 +7,37 @@ export default function TheatreClubPage() {
   const [scrollY, setScrollY] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredImage, setHoveredImage] = useState<number | null>(null);
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
+    // Set initial window size
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -75,8 +94,8 @@ export default function TheatreClubPage() {
         <div
           className="absolute w-[500px] h-[500px] bg-purple-500/15 rounded-full blur-3xl"
           style={{
-            right: `${(window.innerWidth - mousePos.x) * 0.03}px`,
-            bottom: `${(window.innerHeight - mousePos.y) * 0.03}px`,
+            right: `${(windowSize.width - mousePos.x) * 0.03}px`,
+            bottom: `${(windowSize.height - mousePos.y) * 0.03}px`,
             transition: "all 1s ease-out",
           }}
         />
@@ -185,7 +204,6 @@ export default function TheatreClubPage() {
                         </svg>
                       </div>
 
-                      {/* Placeholder text */}
                       {/* Actual Image */}
                       <img
                         src={img.src}
@@ -230,7 +248,7 @@ export default function TheatreClubPage() {
                   transform: `translateY(${
                     scrollY * 0.03 + index * 5
                   }px) rotateY(${
-                    (mousePos.x - window.innerWidth / 2) * 0.01
+                    (mousePos.x - windowSize.width / 2) * 0.01
                   }deg)`,
                   transformStyle: "preserve-3d",
                 }}
@@ -269,7 +287,7 @@ export default function TheatreClubPage() {
           </div>
         </div>
 
-        {/* Stats Section /}
+        {/* Stats Section */}
         <div
           className="mb-32"
           style={{

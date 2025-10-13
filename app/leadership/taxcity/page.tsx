@@ -1,5 +1,5 @@
 "use client";
-"use client";
+
 import React, { useState, useEffect } from "react";
 import {
   ChevronDown,
@@ -17,18 +17,37 @@ export default function VPFinancePage() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredStat, setHoveredStat] = useState<number | null>(null);
   const [certHovered, setCertHovered] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
+    // Set initial window size
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -98,7 +117,7 @@ export default function VPFinancePage() {
         <div
           className="absolute w-[400px] h-[400px] bg-indigo-500/15 rounded-full blur-3xl"
           style={{
-            right: `${(window.innerWidth - mousePos.x) * 0.05}px`,
+            right: `${(windowSize.width - mousePos.x) * 0.05}px`,
             top: `${mousePos.y * 0.06}px`,
             transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
@@ -107,7 +126,7 @@ export default function VPFinancePage() {
           className="absolute w-[350px] h-[350px] bg-green-500/10 rounded-full blur-3xl"
           style={{
             left: "30%",
-            bottom: `${(window.innerHeight - mousePos.y) * 0.04}px`,
+            bottom: `${(windowSize.height - mousePos.y) * 0.04}px`,
             transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         />

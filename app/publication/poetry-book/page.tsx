@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import {
   ChevronDown,
@@ -8,6 +9,7 @@ import {
   ShoppingCart,
   ExternalLink,
   Award,
+  Users,
 } from "lucide-react";
 
 export default function PoetryBookPage() {
@@ -15,18 +17,37 @@ export default function PoetryBookPage() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredImage, setHoveredImage] = useState<number | null>(null);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
+    // Set initial window size
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -84,7 +105,7 @@ export default function PoetryBookPage() {
         <div
           className="absolute w-[500px] h-[500px] bg-rose-500/12 rounded-full blur-3xl"
           style={{
-            right: `${(window.innerWidth - mousePos.x) * 0.04}px`,
+            right: `${(windowSize.width - mousePos.x) * 0.04}px`,
             top: `${Math.sin(scrollY * 0.001) * 100 + mousePos.y * 0.05}px`,
             transition: "all 1s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
@@ -95,7 +116,7 @@ export default function PoetryBookPage() {
             left: "40%",
             bottom: `${
               Math.cos(scrollY * 0.001) * 100 +
-              (window.innerHeight - mousePos.y) * 0.03
+              (windowSize.height - mousePos.y) * 0.03
             }px`,
             transition: "all 0.9s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
@@ -469,24 +490,3 @@ export default function PoetryBookPage() {
     </div>
   );
 }
-
-// Missing Users import - add at top
-const Users = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-    <circle cx="9" cy="7" r="4" />
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-  </svg>
-);
