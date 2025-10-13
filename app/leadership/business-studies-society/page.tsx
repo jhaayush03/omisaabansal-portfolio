@@ -16,6 +16,10 @@ export default function InteractClubPage() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredCert, setHoveredCert] = useState<number | null>(null);
   const [hoveredProject, setHoveredProject] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
