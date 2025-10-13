@@ -22,37 +22,52 @@ export default function InteractClubPage() {
   });
 
   useEffect(() => {
+    // Set initial window size
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
     const handleScroll = () => setScrollY(window.scrollY);
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const initiatives = [
     {
       icon: <Droplets className="w-6 h-6" />,
-      title: "Voluntering",
-      description: "Helped organise various Intra-Sec on Compe ons  ",
+      title: "Volunteering",
+      description: "Helped organise various Intra-Section competitions",
       color: "from-blue-500 to-cyan-500",
     },
     {
       icon: <Book className="w-6 h-6" />,
       title: "Awards",
       description:
-        "Won 2nd posi on at Ramjas Interna onal School’s Commerce Fes val under the idea pitching category ",
+        "Won 2nd position at Ramjas International School's Commerce Festival under the idea pitching category",
       color: "from-amber-500 to-orange-500",
     },
     {
       icon: <Heart className="w-6 h-6" />,
       title: "School Carnival",
-      description: " Volunteered at DPSRKP’s Commerce Fes val",
+      description: "Volunteered at DPSRKP's Commerce Festival",
       color: "from-pink-500 to-rose-500",
     },
   ];
@@ -80,11 +95,11 @@ export default function InteractClubPage() {
           style={{
             right: `${
               Math.cos(scrollY * 0.002) * 150 +
-              (window.innerWidth - mousePos.x) * 0.08
+              (windowSize.width - mousePos.x) * 0.08
             }px`,
             bottom: `${
               Math.sin(scrollY * 0.002) * 150 +
-              (window.innerHeight - mousePos.y) * 0.08
+              (windowSize.height - mousePos.y) * 0.08
             }px`,
             transition: "all 0.6s ease-out",
           }}
@@ -115,7 +130,7 @@ export default function InteractClubPage() {
           >
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span> Member</span>
+              <span>Member</span>
             </div>
             <div className="w-px h-6 bg-emerald-500/30" />
             <span>DPS RK Puram</span>
@@ -176,9 +191,9 @@ export default function InteractClubPage() {
                   <p className="text-gray-300 text-lg leading-relaxed mb-6 group-hover:text-gray-200 transition-colors duration-300">
                     Helped organize multiple intra-section commerce
                     competitions, encouraging financial literacy and teamwork.
-                    Secured 2nd position at Ramjas International School’s
+                    Secured 2nd position at Ramjas International School's
                     Commerce Festival in the Idea Pitching category. Also
-                    volunteered at DPS RK Puram’s Commerce Festival, assisting
+                    volunteered at DPS RK Puram's Commerce Festival, assisting
                     with event coordination and participant management.
                   </p>
                   <div className="flex items-center gap-3 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300">
@@ -228,7 +243,7 @@ export default function InteractClubPage() {
                       {/* Icon/Emoji */}
                       <img
                         src="/image64.jpeg"
-                        alt="Adult Literacy Campaign"
+                        alt="Business Innovation"
                         className="relative z-10 w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-110"
                       />
 
@@ -239,7 +254,7 @@ export default function InteractClubPage() {
                             100+
                           </div>
                           <div className="text-sm text-gray-300">
-                            Adults Educated
+                            Students Engaged
                           </div>
                         </div>
                       </div>
@@ -307,13 +322,6 @@ export default function InteractClubPage() {
                     <p className="text-gray-300 text-sm leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
                       {initiative.description}
                     </p>
-                    {/* {initiative.amount && (
-                      <div className="mt-4 inline-flex px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-400/30">
-                        <span className="text-emerald-300 font-bold">
-                          {initiative.amount}
-                        </span>
-                      </div> 
-                    )}*/}
                   </div>
 
                   {/* Progress bar animation */}
@@ -324,7 +332,7 @@ export default function InteractClubPage() {
           </div>
         </div>
 
-        {/* Certificates Section /}
+        {/* Certificates Section */}
         <div className="mb-32">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
             Certificates & Recognition
@@ -345,7 +353,7 @@ export default function InteractClubPage() {
                 }}
               >
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
-                  {/* Glowing border /}
+                  {/* Glowing border */}
                   <div
                     className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl"
                     style={{
@@ -354,13 +362,13 @@ export default function InteractClubPage() {
                     }}
                   />
 
-                  {/* Certificate container /}
+                  {/* Certificate container */}
                   <div className="absolute inset-1 bg-gradient-to-br from-slate-900 to-emerald-900 rounded-xl overflow-hidden">
                     <div className="w-full h-full bg-gradient-to-br from-emerald-800/20 via-slate-800 to-teal-800/20 p-6 flex flex-col items-center justify-center relative">
-                      {/* Decorative border pattern /}
+                      {/* Decorative border pattern */}
                       <div className="absolute inset-4 border-2 border-emerald-500/30 rounded-lg" />
 
-                      {/* Content /}
+                      {/* Content */}
                       <div className="relative z-10 text-center">
                         <Award className="w-16 h-16 mx-auto mb-4 text-emerald-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500" />
                         <h3 className="text-lg font-bold text-emerald-200 mb-2 group-hover:text-white transition-colors duration-300">
@@ -373,7 +381,7 @@ export default function InteractClubPage() {
                         </div>
                       </div>
 
-                      {/* Shine effect /}
+                      {/* Shine effect */}
                       {hoveredCert === cert.id && (
                         <div
                           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
@@ -385,7 +393,7 @@ export default function InteractClubPage() {
                     </div>
                   </div>
 
-                  {/* Floating sparkle /}
+                  {/* Floating sparkle */}
                   {hoveredCert === cert.id && (
                     <div className="absolute top-4 right-4 text-2xl animate-bounce">
                       ✨
@@ -395,9 +403,9 @@ export default function InteractClubPage() {
               </div>
             ))}
           </div>
-        </div>  */}
+        </div>
 
-        {/* Impact Stats /}
+        {/* Impact Stats */}
         <div
           className="mb-32"
           style={{
@@ -411,7 +419,7 @@ export default function InteractClubPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 { number: "₹3000+", label: "Funds Raised" },
-                { number: "100+", label: "Adults Taught" },
+                { number: "100+", label: "Students Engaged" },
                 { number: "5+", label: "Initiatives Led" },
                 { number: "4", label: "Years of Service" },
               ].map((stat, index) => (
