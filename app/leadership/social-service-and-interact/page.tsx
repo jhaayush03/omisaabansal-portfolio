@@ -353,7 +353,7 @@ export default function InteractClubPage() {
           </div>
         </div>
 
-        {/* Certificates Section */}
+        {/* Certificates Section /}
         <div className="mb-32">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
             Certificates & Recognition
@@ -374,7 +374,7 @@ export default function InteractClubPage() {
                 }}
               >
                 <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
-                  {/* Glowing border */}
+                  {/* Glowing border /}
                   <div
                     className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl"
                     style={{
@@ -383,13 +383,13 @@ export default function InteractClubPage() {
                     }}
                   />
 
-                  {/* Certificate container */}
+                  {/* Certificate container /}
                   <div className="absolute inset-1 bg-gradient-to-br from-slate-900 to-emerald-900 rounded-xl overflow-hidden">
                     <div className="w-full h-full bg-gradient-to-br from-emerald-800/20 via-slate-800 to-teal-800/20 p-6 flex flex-col items-center justify-center relative">
-                      {/* Decorative border pattern */}
+                      {/* Decorative border pattern /}
                       <div className="absolute inset-4 border-2 border-emerald-500/30 rounded-lg" />
 
-                      {/* Content */}
+                      {/* Content /}
                       <div className="relative z-10 text-center">
                         <Award className="w-16 h-16 mx-auto mb-4 text-emerald-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500" />
                         <h3 className="text-lg font-bold text-emerald-200 mb-2 group-hover:text-white transition-colors duration-300">
@@ -402,7 +402,7 @@ export default function InteractClubPage() {
                         </div>
                       </div>
 
-                      {/* Shine effect */}
+                      {/* Shine effect /}
                       {hoveredCert === cert.id && (
                         <div
                           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
@@ -414,7 +414,7 @@ export default function InteractClubPage() {
                     </div>
                   </div>
 
-                  {/* Floating sparkle */}
+                  {/* Floating sparkle /}
                   {hoveredCert === cert.id && (
                     <div className="absolute top-4 right-4 text-2xl animate-bounce">
                       ✨

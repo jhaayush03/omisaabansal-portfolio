@@ -73,10 +73,10 @@ export default function TheatreClubPage() {
   ];
 
   const images = [
-    { id: 1, alt: "Theatron Festival", src: "/i9.jpg", rotation: -5 },
-    { id: 2, alt: "Performance", src: "/i8.jpg", rotation: 3 },
-    { id: 3, alt: "Award Ceremony", src: "/i7.jpg", rotation: -3 },
-    { id: 4, alt: "Team Leadership", src: "/i6.jpg", rotation: 5 },
+    { id: 1, alt: "Theatron Festival", src: "/i17.jpg", rotation: -5 },
+    { id: 2, alt: "Performance", src: "/i16.jpg", rotation: 3 },
+    { id: 3, alt: "Award Ceremony", src: "/i13.jpg", rotation: -3 },
+    { id: 4, alt: "Team Leadership", src: "/i15.jpg", rotation: 5 },
   ];
 
   return (
@@ -287,7 +287,7 @@ export default function TheatreClubPage() {
           </div>
         </div>
 
-        {/* Stats Section */}
+        {/* Stats Section /}
         <div
           className="mb-32"
           style={{

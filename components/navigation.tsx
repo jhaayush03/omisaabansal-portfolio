@@ -122,13 +122,20 @@ export function Navigation() {
             Resume
           </button>
 
-          <Button
-            asChild
-            variant="secondary"
-            className="bg-white text-black hover:bg-white/90"
-          >
-            <a href="/contact">Contact Me</a>
-          </Button>
+       <Button
+          variant="secondary"
+          className="bg-white text-black hover:bg-white/90"
+          onClick={() =>
+            window.open(
+              "https://mail.google.com/mail/?view=cm&fs=1&to=omisaabansal2009@gmail.com",
+              "_blank"
+            )
+          }
+        >
+          Contact Me
+        </Button>
+
+
         </div>
       </div>
 
@@ -211,7 +218,7 @@ export function Navigation() {
               variant="secondary"
               className="bg-white text-black hover:bg-white/90 mt-4"
             >
-              <a href="/contact">Contact Me</a>
+              <a href="mailto:omisaabansal2009@gmail.com">Contact Me</a>
             </Button>
           </div>
         </div>

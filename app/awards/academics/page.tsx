@@ -48,16 +48,16 @@ export default function CertificatePage() {
     },
     {
       id: 4,
-      title: "Global Olympics Olympiad",
+      title: "Global Economics Olympiad",
       date: "2024-25",
-      image: "image65.png",
+      image: "/image65.jpeg",
       issuer: "",
     },
     {
       id: 5,
       title: "International Chemistry Quiz",
       date: "2023",
-      image: "academic3.png",
+      image: "/academic3.png",
       issuer: "",
     },
     {
@@ -69,7 +69,7 @@ export default function CertificatePage() {
     },
     {
       id: 7,
-      title: "SOF",
+      title: "SOF Commerce Olympiad",
       date: "",
       image: "/academic5.png",
       issuer: "",
