@@ -86,7 +86,7 @@ export default function ResearchPaperPage() {
     pdfUrl: "/research_paper.pdf",
     externalLink: "https://example.com/paper-doi-link",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+      "/researchbanner.jpg",
   };
 
   const sections = [
@@ -224,20 +224,20 @@ export default function ResearchPaperPage() {
 
       {/* Paper Image */}
       <section className="px-4 sm:px-8 pb-16 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div
-            className="relative h-96 rounded-xl overflow-hidden border border-slate-700 group animate-fade-in"
-            style={{ animationDelay: "0.7s" }}
-          >
-            <img
-              src={researchPaper.image}
-              alt={researchPaper.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent group-hover:from-slate-900/80 transition-colors duration-300"></div>
-          </div>
-        </div>
-      </section>
+  <div className="max-w-xl mx-auto"> {/* reduce max width */}
+    <div
+      className="relative h-64 rounded-lg overflow-hidden border border-slate-700 group animate-fade-in"
+      style={{ animationDelay: "0.7s" }}
+    >
+      <img
+        src={researchPaper.image}
+        alt={researchPaper.title}
+        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Navigation Tabs */}
       <section className="px-4 sm:px-8 pb-8 relative z-10">
