@@ -412,10 +412,10 @@ export default function ResearchPaperPage() {
                         {researchPaper.pages}
                       </p>
                     )}
-                    <p>
+                   {/* <p>
                       <strong className="text-white">Citations:</strong>{" "}
                       {researchPaper.citations}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>
