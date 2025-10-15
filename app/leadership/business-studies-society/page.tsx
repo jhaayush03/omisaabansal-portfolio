@@ -9,6 +9,7 @@ import {
   Droplets,
   Award,
   ExternalLink,
+  X,
 } from "lucide-react";
 
 export default function InteractClubPage() {
@@ -16,6 +17,7 @@ export default function InteractClubPage() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredCert, setHoveredCert] = useState<number | null>(null);
   const [hoveredProject, setHoveredProject] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [windowSize, setWindowSize] = useState({
     width: 0,
     height: 0,
@@ -144,16 +146,13 @@ export default function InteractClubPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent">
             Featured Social Impact Project
           </h2>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
+          <div
             className="block"
             onMouseEnter={() => setHoveredProject(true)}
             onMouseLeave={() => setHoveredProject(false)}
           >
             <div
-              className="relative p-8 md:p-12 rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/40 to-teal-900/40 border-2 border-emerald-500/50 hover:border-emerald-400 transition-all duration-500 overflow-hidden group cursor-pointer"
+              className="relative p-8 md:p-12 rounded-3xl backdrop-blur-md bg-gradient-to-br from-emerald-900/40 to-teal-900/40 border-2 border-emerald-500/50 hover:border-emerald-400 transition-all duration-500 overflow-hidden group"
               style={{
                 transform: `translateY(${scrollY * 0.1}px) rotateX(${
                   hoveredProject ? "5deg" : "0deg"
@@ -196,16 +195,13 @@ export default function InteractClubPage() {
                     volunteered at DPS RK Puram's Commerce Festival, assisting
                     with event coordination and participant management.
                   </p>
-                  <div className="flex items-center gap-3 text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300">
-                    <span className="font-semibold">View Project Details</span>
-                    <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                  </div>
                 </div>
 
                 {/* Right: Visual Element */}
                 <div className="relative">
                   <div
-                    className="aspect-square rounded-2xl overflow-hidden"
+                    className="aspect-square rounded-2xl overflow-hidden cursor-pointer"
+                    onClick={() => setIsImageModalOpen(true)}
                     style={{
                       transform: hoveredProject
                         ? "scale(1.05) rotate(-2deg)"
@@ -244,17 +240,17 @@ export default function InteractClubPage() {
                       <img
                         src="/ex3.png"
                         alt="Business Innovation"
-                        className="relative z-10 w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-110"
+                        className="relative z-10 w-3/4 h-auto object-contain mx-auto rounded-xl transition-transform duration-500 group-hover:scale-105"
                       />
 
                       {/* Impact overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
                         <div className="text-center">
                           <div className="text-3xl font-bold text-emerald-300 mb-1">
-                            100+
+                            2nd
                           </div>
                           <div className="text-sm text-gray-300">
-                            Students Engaged
+                            Position
                           </div>
                         </div>
                       </div>
@@ -280,7 +276,7 @@ export default function InteractClubPage() {
               <div className="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-emerald-400/50 rounded-tl-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-emerald-400/50 rounded-br-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </a>
+          </div>
         </div>
 
         {/* Initiatives Grid */}
@@ -332,79 +328,6 @@ export default function InteractClubPage() {
           </div>
         </div>
 
-        {/* Certificates Section /}
-        <div className="mb-32">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-            Certificates & Recognition
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {certificates.map((cert, index) => (
-              <div
-                key={cert.id}
-                className="relative group cursor-pointer"
-                onMouseEnter={() => setHoveredCert(cert.id)}
-                onMouseLeave={() => setHoveredCert(null)}
-                style={{
-                  transform: `translateY(${scrollY * 0.05}px) rotateY(${
-                    hoveredCert === cert.id ? "10deg" : "0deg"
-                  })`,
-                  transformStyle: "preserve-3d",
-                  transition: "transform 0.5s ease-out",
-                }}
-              >
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
-                  {/* Glowing border /}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 rounded-2xl"
-                    style={{
-                      opacity: hoveredCert === cert.id ? 1 : 0.4,
-                      transition: "opacity 0.3s ease-out",
-                    }}
-                  />
-
-                  {/* Certificate container /}
-                  <div className="absolute inset-1 bg-gradient-to-br from-slate-900 to-emerald-900 rounded-xl overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-emerald-800/20 via-slate-800 to-teal-800/20 p-6 flex flex-col items-center justify-center relative">
-                      {/* Decorative border pattern /}
-                      <div className="absolute inset-4 border-2 border-emerald-500/30 rounded-lg" />
-
-                      {/* Content /}
-                      <div className="relative z-10 text-center">
-                        <Award className="w-16 h-16 mx-auto mb-4 text-emerald-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500" />
-                        <h3 className="text-lg font-bold text-emerald-200 mb-2 group-hover:text-white transition-colors duration-300">
-                          {cert.title}
-                        </h3>
-                        <div className="px-4 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 inline-block">
-                          <span className="text-sm text-emerald-300">
-                            {cert.year}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Shine effect /}
-                      {hoveredCert === cert.id && (
-                        <div
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                          style={{
-                            animation: "shine 1.5s ease-in-out infinite",
-                          }}
-                        />
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Floating sparkle /}
-                  {hoveredCert === cert.id && (
-                    <div className="absolute top-4 right-4 text-2xl animate-bounce">
-                      ✨
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
-
         {/* Impact Stats */}
         <div
           className="mb-32"
@@ -452,7 +375,32 @@ export default function InteractClubPage() {
         <p>Part of the Leadership Journey | Omisaa Bansal</p>
       </div>
 
-      {/* Custom shine animation */}
+      {/* Image Modal */}
+      {isImageModalOpen && (
+        <div
+          className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setIsImageModalOpen(false)}
+        >
+          <button
+            onClick={() => setIsImageModalOpen(false)}
+            className="absolute top-4 right-4 p-2 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 text-white transition-colors duration-300 z-10 group"
+          >
+            <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+          </button>
+          <div
+            className="relative max-w-6xl max-h-[90vh] w-full h-full flex items-center justify-center animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src="/ex3.png"
+              alt="Business Innovation - Full Size"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Custom animations */}
       <style jsx>{`
         @keyframes shine {
           0% {
@@ -461,6 +409,30 @@ export default function InteractClubPage() {
           100% {
             transform: translateX(100%);
           }
+        }
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes scale-in {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+        .animate-scale-in {
+          animation: scale-in 0.3s ease-out;
         }
       `}</style>
     </div>
