@@ -222,9 +222,9 @@ export default function ResearchPaperPage() {
         </div>
       </section>
 
-      {/* Paper Image */}
+      {/* Paper Image /}
       <section className="px-4 sm:px-8 pb-16 relative z-10">
-  <div className="max-w-xl mx-auto"> {/* reduce max width */}
+  <div className="max-w-xl mx-auto"> {/* reduce max width /}
     <div
       className="relative h-64 rounded-lg overflow-hidden border border-slate-700 group animate-fade-in"
       style={{ animationDelay: "0.7s" }}
