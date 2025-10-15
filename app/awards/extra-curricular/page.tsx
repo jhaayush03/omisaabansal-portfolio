@@ -92,7 +92,7 @@ export default function CertificatePage() {
       id: 10,
       title: "Certificate of Merit",
       date: "2025",
-      image: "/ex1.png",
+      image: "/ex2.png",
       issuer: "",
     },
     {

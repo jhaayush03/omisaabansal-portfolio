@@ -10,17 +10,17 @@ export default function Portfolio() {
   const images = [
     {
       id: 1,
-      placeholder: "AI Workshop Participation",
+      placeholder: "Harvard YLC",
       src: "/i1.jpg",
     },
     {
       id: 2,
-      placeholder: "MotoGP Management Event",
+      placeholder: "Mentored by Harvard Students",
       src: "/i2.jpg",
     },
     {
       id: 3,
-      placeholder: "Delhi Capitals Volunteering",
+      placeholder: "Harvard Alumni",
       src: "/hy1.png",
     },
   ];
@@ -40,7 +40,7 @@ export default function Portfolio() {
         {/* Header */}
         <header className="pt-20 px-6 sm:px-12 text-center mb-20">
           <h1 className="text-5xl sm:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
-            My Summer Programs
+            Harvard Youth Lead Change
           </h1>
           <p
             className="text-gray-300 text-lg max-w-2xl mx-auto opacity-0 animate-fade-in"

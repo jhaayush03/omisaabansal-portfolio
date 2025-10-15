@@ -73,10 +73,10 @@ export default function TheatreClubPage() {
   ];
 
   const images = [
-    { id: 1, alt: "Theatron Festival", src: "/i17.jpg", rotation: -5 },
-    { id: 2, alt: "Performance", src: "/i16.jpg", rotation: 3 },
-    { id: 3, alt: "Award Ceremony", src: "/i13.jpg", rotation: -3 },
-    { id: 4, alt: "Team Leadership", src: "/i15.jpg", rotation: 5 },
+    { id: 1, alt: "Street Plays", src: "/i17.jpg", rotation: -5 },
+    { id: 2, alt: "Theatron'25", src: "/i16.jpg", rotation: 3 },
+    { id: 3, alt: "Performance", src: "/i13.jpg", rotation: -3 },
+    { id: 4, alt: "Team leadership", src: "/i15.jpg", rotation: 5 },
   ];
 
   return (

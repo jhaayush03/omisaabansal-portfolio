@@ -31,6 +31,7 @@ const navSections = [
       "Harvard Youth Lead Change",
       "Ashoka Young Scholars Programme",
       "Young CEO Program",
+      "Tie Young Entrepreneurs",
       "Wharton Global High School Investment Competition",
       "Online Courses",
       "Virtual Internships",
@@ -133,6 +134,19 @@ export function Navigation() {
           }
         >
           Contact Me
+        </Button>
+
+        <Button
+          variant="secondary"
+          className="bg-white text-black hover:bg-white/90"
+          onClick={() =>
+            window.open(
+              "https://www.linkedin.com/in/omisaa-bansal/",
+              "_blank"
+            )
+          }
+        >
+          LinkedIn
         </Button>
 
 

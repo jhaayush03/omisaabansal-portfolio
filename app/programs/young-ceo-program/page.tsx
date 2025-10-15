@@ -40,7 +40,7 @@ export default function Portfolio() {
         {/* Header */}
         <header className="pt-20 px-6 sm:px-12 text-center mb-20">
           <h1 className="text-5xl sm:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
-            My Summer Programs
+            Young CEO Program
           </h1>
           <p
             className="text-gray-300 text-lg max-w-2xl mx-auto opacity-0 animate-fade-in"
@@ -50,7 +50,7 @@ export default function Portfolio() {
           </p>
         </header>
 
-        {/* Images Gallery */}
+        {/* Images Gallery /}
         <section className="px-6 sm:px-12 mb-20">
           <h2 className="text-3xl font-bold mb-12 text-center">Gallery</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -70,10 +70,10 @@ export default function Portfolio() {
                     "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
                 }}
               >
-                {/* Gradient border effect */}
+                {/* Gradient border effect /}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
 
-                {/* Image container */}
+                {/* Image container *}
                 <div className="relative m-0.5 rounded-2xl overflow-hidden h-full">
                   <img
                     src={img.src}
@@ -87,7 +87,7 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                {/* Floating glow */}
+                {/* Floating glow /}
                 <div className="absolute -inset-4 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl opacity-0 group-hover:opacity-40 blur-xl transition-all duration-500 -z-10"></div>
               </div>
             ))}

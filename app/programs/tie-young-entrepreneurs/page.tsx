@@ -1,27 +1,32 @@
 "use client";
 import React, { useState } from "react";
-import { Award, X } from "lucide-react";
+import { Award, X ,ExternalLink} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Portfolio() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const handleViewPDF = () => {
+    window.open("https://economictimes.indiatimes.com/small-biz/entrepreneurship/regional-finalists-of-the-tie-young-entrepreneurs-programme-win-top-honours-at-global-finale/articleshow/93102641.cms?from=mdr", "_blank");
+  };
+  
 
   // ✅ Add image srcs here
   const images = [
     {
       id: 1,
-      placeholder: "Behavioral Finance",
-      src: "/image179.jpeg",
+      placeholder: "Tie Young",
+      src: "/image111.jpeg",
     },
     {
       id: 2,
-      placeholder: "Seeking Investment Alpha",
-      src: "/oc1.png",
+      placeholder: "Tie Young",
+      src: "/image112.jpeg",
     },
     {
       id: 3,
-      placeholder: "Macro-Environmental Factors",
-      src: "/oc2.png",
+      placeholder: "Tie Young",
+      src: "/image113.jpeg",
     },
   ];
 
@@ -40,7 +45,7 @@ export default function Portfolio() {
         {/* Header */}
         <header className="pt-20 px-6 sm:px-12 text-center mb-20">
           <h1 className="text-5xl sm:text-7xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
-            Online Courses
+            Tie Young Entrepreneurs
           </h1>
           <p
             className="text-gray-300 text-lg max-w-2xl mx-auto opacity-0 animate-fade-in"
@@ -49,6 +54,16 @@ export default function Portfolio() {
             Achievements, projects, and professional milestones
           </p>
         </header>
+        <div className="flex justify-center mt-10 py-5">
+            <button
+                onClick={handleViewPDF}
+                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border border-slate-700 hover:border-purple-500/50 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 group"
+            >
+                <ExternalLink className="h-5 w-5 group-hover:scale-125 transition-transform" />
+                View Paper
+            </button>
+            </div>
+
 
         {/* Images Gallery */}
         <section className="px-6 sm:px-12 mb-20">
@@ -93,6 +108,7 @@ export default function Portfolio() {
             ))}
           </div>
         </section>
+       
 
         {/* Certificate Section */}
         <section className="px-6 sm:px-12 mb-20">
@@ -120,10 +136,10 @@ export default function Portfolio() {
                 <div className="md:col-span-1">
                   <div 
                     className="w-64 h-64 md:w-72 md:h-72 mx-auto rounded-xl overflow-hidden border-2 border-yellow-400/30 group-hover:border-yellow-400/60 transition-all duration-500 cursor-pointer"
-                    onClick={() => setSelectedImage("/image179.jpeg")}
+                    onClick={() => setSelectedImage("/image110.jpeg")}
                   >
                     <img
-                      src="/image179.jpeg"
+                      src="/image110.jpeg"
                       alt="Certificate"
                       className="w-full h-full object-cover bg-gradient-to-br from-slate-600 to-slate-700 hover:scale-105 transition-transform duration-500"
                     />
@@ -140,18 +156,22 @@ export default function Portfolio() {
                   </div>
 
                   <h3 className="text-2xl sm:text-3xl font-bold mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-orange-400 group-hover:bg-clip-text transition-all duration-500">
-                    Online courses
+                    Tie Young Entrepreneurs
                   </h3>
 
                   <p className="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-500">
-                   •  Course Behavioural Finance by Duke on Coursera <br />
-                   • Course on Game Theory by Stanford on Coursera
+                  • Over a period of 9 months, worked on a project called DetectoClip which was an assistive solution for the blind. It was an obstruction-detecting clip-on for the visually impaired and blind.<br/>
+                    • Created a working prototype of the same which was later tested in a School for Blind<br/>
+                    • Won 1st position in the regional round and was selected to represent the same in global finale<br/>
+                    • Won Second Runner up, Best Maker Faire Video award, Best Customer Validation Award and in the global Finale and a
+                    cash price of Rs 20,000<br/>
+                    • Was featured in The Economic Times being congratulated for the same<br/>
                   </p>
 
                   <div className="flex items-center gap-2">
                     <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full"></span>
                     <time className="text-sm font-semibold text-yellow-400">
-                      June 2023
+                       2022
                     </time>
                   </div>
                 </div>
