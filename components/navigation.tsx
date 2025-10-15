@@ -23,7 +23,7 @@ const navSections = [
     items: ["Research Paper", "Poetry Book"],
   },
   {
-    title: "Summer Programs",
+    title: "Programs",
     items: [
       "YLAC",
       "UnHackathon",

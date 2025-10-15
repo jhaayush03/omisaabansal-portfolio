@@ -29,12 +29,10 @@ interface ResearchPaper {
   methodology: string;
   conclusion: string;
   keywords: string[];
-  citations: number;
   pdfUrl: string;
   externalLink: string;
   image: string;
   volume?: string;
-  issue?: string;
   pages?: string;
 }
 
@@ -60,8 +58,6 @@ export default function ResearchPaperPage() {
     ],
     date: "Oct 2023- June 2024 ",
     publishedIn: "Journal of Business Management and Information Systems",
-    volume: "Volume 1",
-    issue: "Issue 1 ",
     pages: "pp. 12",
     abstract:
       " The shift towards eco-friendly products has gained significant attention in recent years due to growing environmental concerns globally. This study investigates the attitudes of consumers towards eco-friendly products and their impact on purchase behaviour. Through a comprehensive literature review and empirical research, the study explores various factors influencing consumer attitudes including environmental consciousness, perceived product benefits, and demographic variables. Additionally, it examines the extent to which these attitudes translate into actual purchase decisions. Data was collected through surveys distributed among a diverse sample of consumers, and analysed using statistical methods to draw meaningful insights. The findings suggest a positive correlation between favourable attitudes towards eco-friendly products and increased purchase intent. However, the study also identifies barriers and challenges that hinder widespread adoption, such as price sensitivity and a lack of awareness. The implications of these findings for marketers and policymakers are discussed, emphasizing the need for targeted strategies to enhance consumer awareness and address barriers to adoption. Overall, this research contributes to understanding consumer behavior in the context of sustainability and provides valuable insights for promoting eco-friendly products in the marketplace.",
@@ -87,11 +83,10 @@ export default function ResearchPaperPage() {
       "Environmental awareness",
       "Sustainable consumption",
     ],
-    citations: 234,
     pdfUrl: "/research_paper.pdf",
-    externalLink: "/research_paper.pdf", 
+    externalLink: "https://example.com/paper-doi-link",
     image:
-      "/researchpaper.png",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
   };
 
   const sections = [
@@ -200,7 +195,6 @@ export default function ResearchPaperPage() {
               )}
               <div className="flex items-center gap-2 group hover:text-gray-300 transition-colors">
                 <Award className="h-4 w-4 text-yellow-400 group-hover:scale-125 transition-transform" />
-                {researchPaper.citations} Citations
               </div>
             </div>
           </div>
@@ -224,35 +218,26 @@ export default function ResearchPaperPage() {
               <ExternalLink className="h-5 w-5 group-hover:scale-125 transition-transform" />
               View Paper
             </button>
-            <a
-              href={researchPaper.externalLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border border-slate-700 hover:border-emerald-500/50 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 group"
-            >
-              <Share2 className="h-5 w-5 group-hover:rotate-12 transition-transform" />
-              External Link
-            </a>
           </div>
         </div>
       </section>
 
       {/* Paper Image */}
       <section className="px-4 sm:px-8 pb-16 relative z-10">
-  <div className="max-w-xl mx-auto"> {/* reduce max width */}
-    <div
-      className="relative h-64 rounded-lg overflow-hidden border border-slate-700 group animate-fade-in"
-      style={{ animationDelay: "0.7s" }}
-    >
-      <img
-        src={researchPaper.image}
-        alt={researchPaper.title}
-        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-      />
-    </div>
-  </div>
-</section>
-
+        <div className="max-w-6xl mx-auto">
+          <div
+            className="relative h-96 rounded-xl overflow-hidden border border-slate-700 group animate-fade-in"
+            style={{ animationDelay: "0.7s" }}
+          >
+            <img
+              src={researchPaper.image}
+              alt={researchPaper.title}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent group-hover:from-slate-900/80 transition-colors duration-300"></div>
+          </div>
+        </div>
+      </section>
 
       {/* Navigation Tabs */}
       <section className="px-4 sm:px-8 pb-8 relative z-10">
