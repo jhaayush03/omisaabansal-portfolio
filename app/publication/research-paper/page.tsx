@@ -54,49 +54,44 @@ export default function ResearchPaperPage() {
   const researchPaper: ResearchPaper = {
     id: 1,
     title:
-      "Advanced Machine Learning Approaches for Real-Time Predictive Analytics in Cloud Infrastructure",
+      "Consumer Perception and Buying Behaviour Regarding Eco-Friendly Product",
     authors: [
-      "Alexandra Chen",
-      "Dr. Michael Thompson",
-      "Dr. Sarah Williams",
-      "Prof. James Rodriguez",
+      "Omisaa Bansal",
     ],
-    date: "March 2024",
-    publishedIn: "Journal of Machine Learning and Data Science",
-    volume: "Volume 15",
-    issue: "Issue 3",
-    pages: "pp. 234-267",
+    date: "Oct 2023- June 2024 ",
+    publishedIn: "Journal of Business Management and Information Systems",
+    volume: "Volume 1",
+    issue: "Issue 1 ",
+    pages: "pp. 12",
     abstract:
-      "This research paper presents a comprehensive framework for implementing advanced machine learning algorithms in cloud-based infrastructure to enable real-time predictive analytics. We introduce novel optimization techniques that reduce computational overhead by 65% while maintaining high accuracy. Our methodology combines federated learning with edge computing to process streaming data efficiently across distributed systems. The results demonstrate that our approach outperforms traditional centralized methods in both latency and scalability metrics.",
+      " The shift towards eco-friendly products has gained significant attention in recent years due to growing environmental concerns globally. This study investigates the attitudes of consumers towards eco-friendly products and their impact on purchase behaviour. Through a comprehensive literature review and empirical research, the study explores various factors influencing consumer attitudes including environmental consciousness, perceived product benefits, and demographic variables. Additionally, it examines the extent to which these attitudes translate into actual purchase decisions. Data was collected through surveys distributed among a diverse sample of consumers, and analysed using statistical methods to draw meaningful insights. The findings suggest a positive correlation between favourable attitudes towards eco-friendly products and increased purchase intent. However, the study also identifies barriers and challenges that hinder widespread adoption, such as price sensitivity and a lack of awareness. The implications of these findings for marketers and policymakers are discussed, emphasizing the need for targeted strategies to enhance consumer awareness and address barriers to adoption. Overall, this research contributes to understanding consumer behavior in the context of sustainability and provides valuable insights for promoting eco-friendly products in the marketplace.",
     introduction:
-      "The exponential growth of data generation in modern applications has created unprecedented challenges for real-time analytics. Traditional centralized machine learning approaches struggle with scalability and latency issues when processing massive data streams. This paper addresses these challenges by proposing an innovative distributed architecture that leverages cloud computing resources and edge computing nodes. Our solution is designed to be production-ready and has been validated across multiple cloud platforms including AWS, Google Cloud, and Azure.",
+      "Consumers are now more aware of environmental concerns than they were a decade ago. State governments are primarily concerned with global environmental challenges, such as air and water pollution, depletion of the ozone layer, global warming, and others, in addition to raising public awareness of these issues.Environment deterioration was a major issue during the 1970s but was only limited to the purview of state governments. The population at large was not aware of or did not exhibit care towards the issues at hand (Akehurst, Afonso, & Gonçalves, 2012). A series of environmental catastrophes in the late 1980s made people reevaluate their lives and become conscious of environmental concerns (Titterington, Davies, & Cochrane, 1996). The 1990s were dubbed the Earth decade or the decade of the environment. It was during this time that environmental and social concerns gained traction in the economy and people began to gather more information concerning the environment (Prothero, 1996). It was the time period in which consumers became more conscious about the environment. People began to take individual and group action as a result of growing environmental consciousness and sensitivity. Nevertheless, consumers have also been held accountable for their unmanageable consumption of commodities, careless handling of the environment (Banerjee, 2002; Menon & Menon, 1997), and ecological imbalance. The existing literature, however, is not entirely in agreement on what really motivates consumers to act in a way that is environmentally friendly. More precisely, the link between conduct and attitude was shown to be different due to sociocultural, psychological, and demographic aspects (Diamantopoulos et al., 2003; Okr￿glicka, Mittal, & Navickas, 2023) . It is not well understood what factors influence consumers' desire to purchase environmentally friendly products (WTB-EFP) and their attitude towards the environment. Several writers contend that although many customers claim to be environmentally conscious, their purchasing decisions do not necessarily back up these claims (Gardyn, 2003; Kalafatis et al., 1999). Therefore, the purpose of this study is to investigate how consumers perceive eco-friendly products and offer insights into the variables influencing their purchase decisions. By means of an extensive examination of extant literature, the present study seeks to elucidate customer attitudes and behaviours toward environmentally friendly products. Additionally, the study intends to offer suggestions for businesses seeking to efficiently advertise and sell their eco-friendl merchandise",
     methodology:
-      "Our research methodology consists of four phases: (1) Data Collection and Preprocessing, where we gathered 50GB of real-world data from various IoT sensors and cloud services; (2) Model Development, implementing both traditional ML algorithms and deep learning models; (3) Optimization and Tuning, using automated hyperparameter optimization; (4) Deployment and Testing, evaluating performance across different cloud environments. We used Python, TensorFlow, and Apache Spark for implementation, with validation on production datasets containing over 100 million records.",
+      " This study employs a quantitative approach to examine respondents' purchasing behaviours regarding eco-friendly products. Primary data were gathered through a structured questionnaire through Google Forms. Secondary data was sourced from articles, journals, books, and websites. Simple random sampling was utilized as it was challenging to access the entire population. Garrett's ranking technique was used to analyse respondents' buying behaviours. The survey included 250 consumers from various areas across Delhi. The sampling technique used in this study was simple random sampling because it was difficult to reach the entire population. Graphic representation of different factors for different groups and further analysis through Garrett's classification technique are used to identify the purchasing behaviour of respondents. By converting ranks into scores, Garrett Ranking provides a nuanced view of respondents' preferences or priorities. The transformation to scores enables easy comparison of different items or factors. Garrett Rankings were used to identify the preference order of various criteria for different particulars, and the Garrett Score was used to test the level of significance among the different socio-economic group using ANOVA. ANOVA (Analysis of Variance) is a powerful statistical tool used to compare the means of different groups and determine if there are significant differences among them. In ANOVA, the primary outputs are the F-statistic and the p-value.<br/> • F-statistic: This value compares the variance between the groups to the variance within the groups. A larger F-statistic suggests a more substantial difference between groups compared to the variability within groups.<br/> • p-value: This indicates the probability that the observed differences are due to chance. A p-value less than the significance level (typically 0.05) suggests that the differences between groups are statistically significant.",
     keyFindings: [
-      "Achieved 65% reduction in computational overhead compared to baseline methods",
-      "Reduced inference latency from 850ms to 120ms on average",
-      "Improved prediction accuracy by 12% using ensemble methods",
-      "Successfully scaled to handle 1 million events per second",
-      "Implemented federated learning reducing data transmission by 80%",
-      "Cost reduction of 45% compared to traditional cloud solutions",
+      "Over 50% of respondents are young (18–44 years) and belong to the middle-income group. This group shows higher awareness and purchasing frequency of eco-friendly products compared to older age groups.",
+      "Respondents believe eco-friendly products are primarily good for the environment and health, but consider high prices and limited availability as major obstacles.ANOVA results show significant differences in perception scores across socio-economic groups.",
+      "Middle-income groups' attitudes closely match the overall trend, whereas high-income respondents are more influenced by advertisements.The ANOVA test confirms attitudinal differences exist between income groups.",
+      "Most consumers express the intention to preserve the earth and like eco-friendly products, though some feel purchasing them enhances their social image.Differences among income groups are statistically significant, as shown by the ANOVA test.",
+      "High-income consumers focus on healthcare and cosmetics products.",
+      "Middle-income consumers prioritize household and essential goods.",
+"Overall, income level influences category preference, but not the frequency of eco-friendly product purchases",
     ],
     conclusion:
-      "This research successfully demonstrates that advanced machine learning combined with intelligent cloud architecture can achieve significant improvements in real-time predictive analytics. The proposed framework addresses key industry challenges and provides practical solutions for enterprise-scale deployments. Future work will focus on incorporating reinforcement learning for dynamic optimization and expanding the framework to support multi-cloud environments. Our contributions have direct applicability to finance, healthcare, e-commerce, and IoT sectors.",
+      "Eco-friendly products play a crucial role in preserving the planet by reducing pollution, conserving natural resources, and promoting sustainable living. As environmental awareness increases, more people are realizing the importance of choosing green alternatives. However, the higher cost of these products often discourages widespread use. Governments can help by providing subsidies and tax benefits, while businesses can focus on innovation to make sustainable goods more affordable. Consumers, too, must support eco-friendly initiatives through conscious purchasing. With collective effort, eco-friendly products can become both accessible and affordable, paving the way for a cleaner, greener, and more sustainable future for all.",
     keywords: [
-      "Machine Learning",
-      "Cloud Computing",
-      "Predictive Analytics",
-      "Edge Computing",
-      "Federated Learning",
-      "Real-time Processing",
-      "Data Science",
-      "Distributed Systems",
+      "Eco-friendly products",
+      "Consumer attitudes",
+      "Purchase behaviour",
+      "Environmental awareness",
+      "Sustainable consumption",
     ],
     citations: 234,
-    pdfUrl: "https://example.com/research-paper.pdf",
-    externalLink: "https://example.com/paper-doi-link",
+    pdfUrl: "/research_paper.pdf",
+    externalLink: "/research_paper.pdf", 
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
+      "/researchpaper.png",
   };
 
   const sections = [
@@ -122,6 +117,19 @@ export default function ResearchPaperPage() {
       default:
         return researchPaper.abstract;
     }
+  };
+
+  const handleDownloadPDF = () => {
+    const link = document.createElement('a');
+    link.href = researchPaper.pdfUrl;
+    link.download = 'research_paper.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleViewPDF = () => {
+    window.open(researchPaper.pdfUrl, '_blank');
   };
 
   return (
@@ -202,16 +210,15 @@ export default function ResearchPaperPage() {
             className="flex flex-wrap gap-4 animate-fade-in"
             style={{ animationDelay: "0.6s" }}
           >
-            <a
-              href={researchPaper.pdfUrl}
-              download
+            <button
+              onClick={handleDownloadPDF}
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transform hover:scale-105 active:scale-95 group"
             >
               <Download className="h-5 w-5 group-hover:scale-125 transition-transform" />
               Download PDF
-            </a>
+            </button>
             <button
-              onClick={() => setIsPreviewOpen(true)}
+              onClick={handleViewPDF}
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border border-slate-700 hover:border-purple-500/50 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 group"
             >
               <ExternalLink className="h-5 w-5 group-hover:scale-125 transition-transform" />
@@ -232,20 +239,20 @@ export default function ResearchPaperPage() {
 
       {/* Paper Image */}
       <section className="px-4 sm:px-8 pb-16 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div
-            className="relative h-96 rounded-xl overflow-hidden border border-slate-700 group animate-fade-in"
-            style={{ animationDelay: "0.7s" }}
-          >
-            <img
-              src={researchPaper.image}
-              alt={researchPaper.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent group-hover:from-slate-900/80 transition-colors duration-300"></div>
-          </div>
-        </div>
-      </section>
+  <div className="max-w-xl mx-auto"> {/* reduce max width */}
+    <div
+      className="relative h-64 rounded-lg overflow-hidden border border-slate-700 group animate-fade-in"
+      style={{ animationDelay: "0.7s" }}
+    >
+      <img
+        src={researchPaper.image}
+        alt={researchPaper.title}
+        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Navigation Tabs */}
       <section className="px-4 sm:px-8 pb-8 relative z-10">
@@ -437,14 +444,13 @@ export default function ResearchPaperPage() {
               >
                 Close
               </button>
-              <a
-                href={researchPaper.pdfUrl}
-                download
+              <button
+                onClick={handleDownloadPDF}
                 className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 group"
               >
                 <Download className="h-4 w-4 group-hover:scale-125 transition-transform" />
                 Download Certificate
-              </a>
+              </button>
             </div>
           </div>
         </div>
