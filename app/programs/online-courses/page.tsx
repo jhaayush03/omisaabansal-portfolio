@@ -145,7 +145,10 @@ export default function Portfolio() {
 
                   <p className="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-500">
                    •  Course Behavioural Finance by Duke on Coursera <br />
-                   • Course on Game Theory by Stanford on Coursera
+                   • Course on Game Theory by Stanford on Coursera<br/>
+                  <b> • Virtual Projects-<br/></b>
+                    -Analysing Macro -Environmental Factors: Conducted a comprehensive analysis of macroeconomic trends and their impact on industries and investment decisions.<br/>
+                   - Seeking Investment Alpha: Researched and evaluated investment opoortunities to identify strategies for superior portfolio performance.
                   </p>
 
                   <div className="flex items-center gap-2">
