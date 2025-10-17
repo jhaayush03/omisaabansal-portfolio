@@ -109,16 +109,20 @@ export function Hero() {
         {/* Contact Info */}
         <div className="absolute bottom-12 left-8 flex flex-col gap-2 text-white">
           <a
-            href="mailto:alexandra.chen@email.com"
+            onClick={() =>
+            window.open(
+              "https://mail.google.com/mail/?view=cm&fs=1&to=omisaabansal2009@gmail.com",
+              "_blank"
+            )}
             className="text-sm hover:underline"
           >
-            alexandra.chen@email.com
+            omisaabansal2009@gmail.com
           </a>
-          <a href="tel:+15551234567" className="text-sm hover:underline">
+          {/*<a href="tel:+15551234567" className="text-sm hover:underline">
             {"T: +1 (555) 123-4567"}
-          </a>
+          </a> */}
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/omisaa-bansal/"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2"
