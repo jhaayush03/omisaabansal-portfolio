@@ -25,13 +25,13 @@ const navSections = [
   {
     title: "Programs",
     items: [
-      "YLAC",
+      "Tie Young Entrepreneurs",
       "UnHackathon",
-      "Regional Science Exhibition",
       "Harvard Youth Lead Change",
+      "YLAC",
+      "Regional Science Exhibition",
       "Ashoka Young Scholars Programme",
       "Young CEO Program",
-      "Tie Young Entrepreneurs",
       "Wharton Global High School Investment Competition",
       "Online Courses",
       "Virtual Internships",

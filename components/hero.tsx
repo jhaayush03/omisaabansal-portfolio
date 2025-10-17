@@ -10,7 +10,7 @@ export function Hero() {
       <div className="absolute inset-0 grid grid-cols-4 grid-rows-3">
         <div className="relative overflow-hidden">
           <img
-            src="/i.jpeg"
+            src="/banner1st.jpg"
             alt="Conference presentation"
             className="h-full w-full object-cover"
           />
