@@ -279,7 +279,7 @@ export default function InteractClubPage() {
           </div>
         </div>
 
-        {/* Initiatives Grid */}
+        {/* Initiatives Grid /}
         <div className="mb-32">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">
             Community Initiatives
@@ -296,12 +296,12 @@ export default function InteractClubPage() {
                 }}
               >
                 <div className="relative p-6 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-emerald-400/50 transition-all duration-500 h-full overflow-hidden">
-                  {/* Animated background */}
+                  {/* Animated background /}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${initiative.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
                   />
 
-                  {/* Ripple effect */}
+                  {/* Ripple effect /}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="absolute top-1/2 left-1/2 w-0 h-0 group-hover:w-full group-hover:h-full bg-emerald-500/5 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700" />
                   </div>
@@ -320,7 +320,7 @@ export default function InteractClubPage() {
                     </p>
                   </div>
 
-                  {/* Progress bar animation */}
+                  {/* Progress bar animation /}
                   <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 w-0 group-hover:w-full transition-all duration-700" />
                 </div>
               </div>

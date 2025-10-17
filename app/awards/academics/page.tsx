@@ -27,7 +27,7 @@ export default function CertificatePage() {
   const certificates: Certificate[] = [
     {
       id: 1,
-      title: "Academic Excellence Class-XII",
+      title: "7 Years of Academic Excellence",
       date: "2018-25",
       image: "/academic1.png",
       issuer: "",
@@ -62,7 +62,7 @@ export default function CertificatePage() {
     },
     {
       id: 6,
-      title: "Merit Certificate Class X",
+      title: "Green Olympiad",
       date: "2023",
       image: "/academic4.png",
       issuer: "",
