@@ -20,8 +20,8 @@ export default function Portfolio() {
     },
     {
       id: 3,
-      placeholder: "Exihibition",
-      src: "/rg3.jpg",
+      placeholder: " Regional Science Exhibition",
+      src: "/rg4.jpg",
     },
   ];
 
