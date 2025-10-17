@@ -146,12 +146,15 @@ export default function Portfolio() {
                   <p className="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-500">
                    •  Course Behavioural Finance by Duke on Coursera <br />
                    • Course on Game Theory by Stanford on Coursera<br/>
+                  <b> • Virtual Projects:<br/></b>
+                    -Analysing Macro -Environmental Factors: Conducted a comprehensive analysis of macroeconomic trends and their impact on industries and investment decisions.<br/>
+                   - Seeking Investment Alpha: Researched and evaluated investment opoortunities to identify strategies for superior portfolio performance.
                   </p>
 
                   <div className="flex items-center gap-2">
                     <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full"></span>
                     <time className="text-sm font-semibold text-yellow-400">
-                      June 2023
+                      June 2023- 2025
                     </time>
                   </div>
                 </div>
@@ -159,131 +162,7 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-        {/* Certificate Section 2*/}
-        <section className="px-6 sm:px-12 mb-20">
-          <div
-            className="group relative"
-            onMouseEnter={() => setHoveredItem("cert")}
-            onMouseLeave={() => setHoveredItem(null)}
-            style={{
-              transform:
-                hoveredItem === "cert" ? "scale(1.02) rotateY(5deg)" : "scale(1)",
-              transition: "all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
-              perspective: "1000px",
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-orange-400/20 to-red-400/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-
-            <div className="relative bg-gradient-to-br from-slate-700/50 to-slate-800/50 backdrop-blur-xl border border-slate-600/30 group-hover:border-yellow-400/50 rounded-2xl p-8 sm:p-12 overflow-hidden transition-all duration-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-              <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Certificate Image */}
-                <div className="md:col-span-1">
-                  <div 
-                    className="w-64 h-64 md:w-72 md:h-72 mx-auto rounded-xl overflow-hidden border-2 border-yellow-400/30 group-hover:border-yellow-400/60 transition-all duration-500 cursor-pointer"
-                    onClick={() => setSelectedImage("/oc2.png")}
-                  >
-                    <img
-                      src="/oc2.png"
-                      alt="Certificate"
-                      className="w-full h-full object-cover bg-gradient-to-br from-slate-600 to-slate-700 hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                </div>
-
-                {/* Certificate Content */}
-                <div className="md:col-span-2 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Award className="w-6 h-6 text-yellow-400" />
-                    <span className="text-sm font-semibold text-yellow-400">
-                      ACHIEVEMENT
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-orange-400 group-hover:bg-clip-text transition-all duration-500">
-                    Virtual Projects
-                  </h3>
-
-                  <p className="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-500">
-                   • Analysing Macro -Environmental Factors: Conducted a comprehensive analysis of macroeconomic trends and their impact on industries and investment decisions.<br />
-                 
-                  </p>
-
-                  <div className="flex items-center gap-2">
-                    <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full"></span>
-                    <time className="text-sm font-semibold text-yellow-400">
-                      April 2025
-                    </time>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Certificate Section3 */}
-        <section className="px-6 sm:px-12 mb-20">
-         
-          <div
-            className="group relative"
-            onMouseEnter={() => setHoveredItem("cert")}
-            onMouseLeave={() => setHoveredItem(null)}
-            style={{
-              transform:
-                hoveredItem === "cert" ? "scale(1.02) rotateY(5deg)" : "scale(1)",
-              transition: "all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
-              perspective: "1000px",
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-orange-400/20 to-red-400/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-
-            <div className="relative bg-gradient-to-br from-slate-700/50 to-slate-800/50 backdrop-blur-xl border border-slate-600/30 group-hover:border-yellow-400/50 rounded-2xl p-8 sm:p-12 overflow-hidden transition-all duration-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-              <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Certificate Image */}
-                <div className="md:col-span-1">
-                  <div 
-                    className="w-64 h-64 md:w-72 md:h-72 mx-auto rounded-xl overflow-hidden border-2 border-yellow-400/30 group-hover:border-yellow-400/60 transition-all duration-500 cursor-pointer"
-                    onClick={() => setSelectedImage("/oc1.png")}
-                  >
-                    <img
-                      src="/oc1.png"
-                      alt="Certificate"
-                      className="w-full h-full object-cover bg-gradient-to-br from-slate-600 to-slate-700 hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                </div>
-
-                {/* Certificate Content */}
-                <div className="md:col-span-2 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Award className="w-6 h-6 text-yellow-400" />
-                    <span className="text-sm font-semibold text-yellow-400">
-                      ACHIEVEMENT
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-orange-400 group-hover:bg-clip-text transition-all duration-500">
-                    Virtual Projects
-                  </h3>
-
-                  <p className="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base group-hover:text-gray-200 transition-colors duration-500">
-                   •  Seeking Investment Alpha: Researched and evaluated investment opoortunities to identify strategies for superior portfolio performance. <br />
-                  
-                  </p>
-
-                  <div className="flex items-center gap-2">
-                    <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full"></span>
-                    <time className="text-sm font-semibold text-yellow-400">
-                      April 2025
-                    </time>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Footer Space */}
         <div className="h-20"></div>
