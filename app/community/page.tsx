@@ -10,17 +10,17 @@ export default function Portfolio() {
   const images = [
     {
       id: 1,
-      placeholder: "AI Workshop Participation",
+      placeholder: "Crowdfunding",
       src: "/image201.jpeg",
     },
     {
       id: 2,
-      placeholder: "MotoGP Management Event",
+      placeholder: "Volunteered to be a scribe",
       src: "/image200.jpeg",
     },
     {
       id: 3,
-      placeholder: "Delhi Capitals Volunteering",
+      placeholder: "Assisted dyslexic student academically",
       src: "/certificate.jpeg",
     },
   ];
